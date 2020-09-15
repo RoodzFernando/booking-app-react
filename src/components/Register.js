@@ -1,88 +1,78 @@
-import React from 'react'
+import React from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 class Register extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       username: '',
       password: '',
-      passwordConfirmation: ''
-    }
-    this.handleChange = this.handleChange.bind(this)
-    this.registerHandle = this.registerHandle.bind(this)
+      passwordConfirmation: '',
+    };
+    this.handleChange = this.handleChange.bind(this);
+    this.registerHandle = this.registerHandle.bind(this);
   }
 
   registerHandle(event) {
-    event.preventDefault()
-    console.log('Form submitted!')
-    // fetch('http://localhost:3001/signup', 
-    // {method: 'POST', mode: 'no-cors', body: {
-    //   username: this.state.username,
-    //   password: this.state.password,
-    //   password_confirmation: this.state.passwordConfirmation
-    // }}
-    // ).then(response => console.log(response))
-    // .then(data=> console.log(data.json()))
+    event.preventDefault();
 
     axios.post('http://localhost:3001/users', {
-      user:{username: this.state.username,
-      password: this.state.password,
-      password_confirmation: this.state.passwordConfirmation}
+      user: {
+        username: this.state.username,
+        password: this.state.password,
+        password_confirmation: this.state.passwordConfirmation,
+      },
     }).then(
-      response => console.log(response)
-    )
+      response => console.log(response),
+    );
 
     this.setState({
       username: '',
       password: '',
-      passwordConfirmation: ''
-    })
+      passwordConfirmation: '',
+    });
   }
 
-  handleChange(event){
-    const {name, value} = event.target
+  handleChange(event) {
+    const { name, value } = event.target;
     this.setState({
-      [name]: value
-    })
+      [name]: value,
+    });
   }
+
   render() {
-     return (
-    <form>
-      <label htmlFor="username">
-        Username:
-        <input type="text" placeholder="username" name="username" id="username" onChange={this.handleChange} />
-      </label>
+    return (
+      <div className="register-page">
+        <form>
+          <h1>Register</h1>
 
-      <label htmlFor="password">
-        Password:
-        <input type="text" placeholder="Password" name="password" id="password" onChange={this.handleChange} />
-      </label>
+          <div className="field">
+            <label htmlFor="username">Username:</label>
+            <input type="text" placeholder="username" name="username" id="username" onChange={this.handleChange} />
+          </div>
 
-      <label label htmlFor = "password_confirmation">
-        Password confirmation:
-        <input onChange={this.handleChange} type="text" placeholder="Password confirmation" name="passwordConfirmation" id="password_confirmation"/>
-      </label>
-      <button type="sumit" onClick={this.registerHandle} >Register</button>
-      <div>
-      <h1>
-        username: {this.state.username}
+          <div div className = "field" >
+            <label htmlFor="password">Password:</label>
+            <input type="password" placeholder="Password" name="password" id="password" onChange={this.handleChange} />
+          </div>
 
-      </h1>
-
-      <h1>
-
-        password: {this.state.password}
-      </h1>
-
-      <h1>
-
-        password confirmation: {this.state.passwordConfirmation}
-      </h1>
+          <div div className = "field" >
+            <label label htmlFor="password_confirmation">Password confirmation:</label>
+            <input onChange={this.handleChange} type="password" placeholder="Password confirmation" name="passwordConfirmation" id="password_confirmation" />
+          </div>
+          
+          <div className="btn-submit">
+            <button type="submit" onClick={this.registerHandle}>Register</button>
+              <p>
+                Already a user?
+                <Link to="login">Login</Link>
+              </p>
+          </div>
+        </form>
       </div>
-    </form>
-  )
+    );
   }
 }
 
-export default Register
+export default Register;

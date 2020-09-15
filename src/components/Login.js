@@ -1,32 +1,56 @@
-import React, { PureComponent } from 'react'
+import React, { PureComponent } from 'react';
+import axios from 'axios';
 
 class Login extends PureComponent {
   constructor(props) {
-    super(props)
+    super(props);
 
     this.state = {
       username: '',
-      password: ''
-    }
+      password: '',
+    };
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  handleChange(event) {
+    const { name, value } = event.target;
+    this.setState({
+      [name]: value,
+    });
+  }
+
+  handleSubmit(event) {
+    event.preventDefault();
+    axios.get(`http://localhost:3001/authentication/create?username=${this.state.username}&password=${this.state.password}`)
+    .then(data => data).then(
+      response => console.log(response.data)
+    )
   }
 
   render() {
     return (
-      <form>
-        <label htmlFor="username">
-          Username: 
-          <input type="text" name="username" id="username" placeholder="Username"/>
-        </label>
+      <div className="login-page">
+        <form>
+          <h1>Login</h1>
 
-        <label htmlFor="username">
-          Password: 
-          <input type="text" name="password" id="password" placeholder="Password"/>
-        </label>
+          <div className="field">
+            <label htmlFor="username">Username:</label>
+            <input onChange={this.handleChange} type="text" name="username" id="username" placeholder="Username" />
+          </div>
 
-        <button type="submit">log in</button>
-      </form>
-    )
+          <div className="field">
+            <label htmlFor="username">Password:</label>
+            <input onChange={this.handleChange} type="password" name="password" id="password" placeholder="Password" />
+          </div>
+
+          <div className="btn-login">
+            <button onClick={this.handleSubmit} type="submit">log in</button>
+          </div>
+        </form>
+      </div>
+    );
   }
 }
 
-export default Login
+export default Login;
