@@ -22,10 +22,17 @@ class Login extends PureComponent {
 
   handleSubmit(event) {
     event.preventDefault();
-    axios.get(`http://localhost:3001/authentication/create?username=${this.state.username}&password=${this.state.password}`)
-    .then(data => data).then(
-      response => console.log(response.data)
-    )
+     axios.get(`http://localhost:3001/authentication/create?username=${this.state.username}&password=${this.state.password}`)
+      .then(data => data)
+      .then(response => {
+        localStorage.setItem('token', response.data.jwt)
+        if (response.data.jwt !== undefined) {
+          this.props.history.push('/info');
+        }else{
+          console.log('something went wrong!')
+        }
+      })
+      .catch (error => console.log(error)) 
   }
 
   render() {

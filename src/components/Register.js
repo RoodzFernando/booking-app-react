@@ -23,9 +23,16 @@ class Register extends React.Component {
         password: this.state.password,
         password_confirmation: this.state.passwordConfirmation,
       },
-    }).then(
-      response => console.log(response),
-    );
+    })
+    .then(response => {
+        localStorage.setItem('token', response.data.jwt)
+        if (response.data.jwt !== undefined) {
+          this.props.history.push('/info');
+        } else {
+          console.log('something went wrong!')
+        }
+      })
+      .catch(error => console.log(error))
 
     this.setState({
       username: '',
