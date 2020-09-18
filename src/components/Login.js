@@ -1,5 +1,7 @@
 import React, { PureComponent } from 'react';
-import axios from 'axios';
+// import axios from 'axios';
+import store from '../helpers/store';
+import { loginUser } from '../actions/actionsCreator';
 
 class Login extends PureComponent {
   constructor(props) {
@@ -22,17 +24,11 @@ class Login extends PureComponent {
 
   handleSubmit(event) {
     event.preventDefault();
-     axios.get(`http://localhost:3001/authentication/create?username=${this.state.username}&password=${this.state.password}`)
-      .then(data => data)
-      .then(response => {
-        localStorage.setItem('token', response.data.jwt)
-        if (response.data.jwt !== undefined) {
-          this.props.history.push('/info');
-        }else{
-          console.log('something went wrong!')
-        }
-      })
-      .catch (error => console.log(error)) 
+    loginUser(this.state);
+    const user_token = undefined || localStorage.getItem('token');
+    if (user_token) {
+      this.props.history.push('/model');
+    }
   }
 
   render() {

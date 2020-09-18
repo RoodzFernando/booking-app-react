@@ -24,15 +24,15 @@ class Register extends React.Component {
         password_confirmation: this.state.passwordConfirmation,
       },
     })
-    .then(response => {
-        localStorage.setItem('token', response.data.jwt)
+      .then(response => {
+        localStorage.setItem('token', response.data.jwt);
         if (response.data.jwt !== undefined) {
           this.props.history.push('/info');
         } else {
-          console.log('something went wrong!')
+          console.log('something went wrong!');
         }
       })
-      .catch(error => console.log(error))
+      .catch(error => console.log(error));
 
     this.setState({
       username: '',
@@ -59,22 +59,22 @@ class Register extends React.Component {
             <input type="text" placeholder="username" name="username" id="username" onChange={this.handleChange} />
           </div>
 
-          <div div className = "field" >
+          <div div className="field">
             <label htmlFor="password">Password:</label>
             <input type="password" placeholder="Password" name="password" id="password" onChange={this.handleChange} />
           </div>
 
-          <div div className = "field" >
+          <div div className="field">
             <label label htmlFor="password_confirmation">Password confirmation:</label>
             <input onChange={this.handleChange} type="password" placeholder="Password confirmation" name="passwordConfirmation" id="password_confirmation" />
           </div>
-          
+
           <div className="btn-submit">
             <button type="submit" onClick={this.registerHandle}>Register</button>
-              <p>
-                Already a user?
-                <Link to="login">Login</Link>
-              </p>
+            <p>
+              Already a user?
+              <Link to="login">Login</Link>
+            </p>
           </div>
         </form>
       </div>

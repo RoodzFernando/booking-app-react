@@ -3,6 +3,9 @@ import { Switch, Route } from 'react-router-dom';
 import Register from './Register';
 import Login from './Login';
 import InfoPage from './InfoPage';
+import Models from './Models';
+import TestDrive from './TestDrive';
+import DetailPage from './DetailPage';
 
 function Home() {
   return (
@@ -11,7 +14,10 @@ function Home() {
       <Switch>
         <Route path="/" exact component={Register} />
         <Route path="/login" exact strict component={Login} />
-        <Route path="/info" strict component={InfoPage} />
+        {/* <Route path="/info" strict component={Models} /> */}
+        <Route path="/model" strict component={Models} />
+        <Route path="/test-drive" strict component={TestDrive} />
+        <Route path="/detail/:id" strict component={DetailPage} />
       </Switch>
     </div>
   );

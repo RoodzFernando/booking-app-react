@@ -1,52 +1,72 @@
+import axios from 'axios';
+import store from '../helpers/store';
 import * as actions from './actions';
 
-const requestLogin = creds => {
-  return {
-    type: actions.LOGIN_REQUEST,
-    isFetching: true,
-    isAuthenticated: false,
-    payload: creds,
-  }
-}
+const requestLogin = creds => ({
+  type: actions.LOGIN_REQUEST,
+  isFetching: true,
+  isAuthenticated: false,
+  payload: creds,
+});
 
-const successLogin = user => {
-  return {
-    type: actions.LOGIN_SUCCESS,
-    isFetching: false,
-    isAuthenticated: true,
-    token: user,
-  }
-}
+const successLogin = user => ({
+  type: actions.LOGIN_SUCCESS,
+  isFetching: false,
+  isAuthenticated: true,
+  token: user,
+});
 
-const loginError = message => {
-  return {
-    type: actions.LOGIN_FAILURE,
-    isFetching: false,
-    isAuthenticated: false,
-    payload: message,
-  }
-}
+const loginError = message => ({
+  type: actions.LOGIN_FAILURE,
+  isFetching: false,
+  isAuthenticated: false,
+  payload: message,
+});
 
 function loginUser(creds) {
   const config = {
-    method: 'POST',
-    headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-    body: `username=${creds.username}&password=${creds.password}`,
-  }
+    method: 'post',
+    url: 'http://localhost:3001/login',
+    data: {
+      username: creds.username,
+      password: creds.password,
+    },
+  };
+  store.dispatch(requestLogin(creds));
+  axios(config)
+    .then(response => {
+      if (!response.statusText) {
+        console.log('no');
+      } else {
+        console.log('yes');
+        store.dispatch(successLogin(creds));
+        console.log(store.getState());
+        // console.log(response.data.token)
+        localStorage.setItem('token', response.data.token);
+      // props.history.push('/info')
+      }
+    });
 
-  return dispatch => {
-    dispatch(requestLogin(creds))
+  // if (!response.status === 200) {
+  //   console.log(response.status)
+  //   console.log('it is ok')
+  // }else {
+  //   console.log('request is wrong')
+  // }
+  // })
+  // }
 
-    return fetch('http://localhost:3001/login', config)
-    .then(response => 
-      console.log(response);
-      )
-  }
+  // store.dispatch(requestLogin(creds))
+  // const data = response;
+  // console.log(data);
+  // return async dispatch => {
+  //   dispatch(requestLogin(creds))
+  // }
 }
-
 
 export {
   requestLogin,
   successLogin,
   loginError,
-}
+  loginUser,
+};
