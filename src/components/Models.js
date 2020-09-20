@@ -9,25 +9,31 @@ function Models() {
       .then(response => response.json())
       .then(data => {
         setCars(...cars, data.data);
-      // console.log(data.data)
       });
   }, []);
-  console.log(cars);
   return (
-    <div>
-      <Navigation />
-      <h1>Latest Models</h1>
-      <h3>Please select a model for more details</h3>
-      {
-          cars.map(car => (
-            <Link to={`/detail/${car.slug}`}>
-              <div>
-                <h2>{car.make}</h2>
-                <img src={car.image_url} alt="" />
-              </div>
-            </Link>
-          ))
-        }
+    <div className="model-page">
+      <div className="navigation-side">
+        <Navigation />
+      </div>
+
+      <div className="right-side">
+        <h1>Latest Models</h1>
+        <h3>Please select a model for more details</h3>
+        <div className="img-card">
+          {
+              cars.map(car => (
+                <Link to={`/detail/${car.slug}`}>
+                  <div>
+                    <img src={car.image_url} alt="" />
+                    <h2>{car.make} {car.model}</h2>
+                  </div>
+                </Link>
+              ))
+            }
+        </div>
+      </div>
+
     </div>
   );
 }

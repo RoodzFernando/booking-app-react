@@ -6,6 +6,10 @@ import Home from './components/Home';
 import * as serviceWorker from './serviceWorker';
 import './styles/Register.scss';
 import './styles/Login.scss';
+import './styles/Navigation.scss';
+import './styles/Footer.scss';
+import './styles/Home.scss';
+import './styles/Model.scss';
 import store from './helpers/store';
 
 ReactDOM.render(

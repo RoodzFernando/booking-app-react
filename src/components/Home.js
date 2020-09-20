@@ -9,7 +9,7 @@ import DetailPage from './DetailPage';
 
 function Home() {
   return (
-    <div>
+    <div className="body-app">
       {/* <h1>Welcome Home</h1> */}
       <Switch>
         <Route path="/" exact component={Register} />

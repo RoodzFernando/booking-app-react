@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import Navigation from './Navigation';
 
 function DetailPage({match}) {
   const [model, setModel] = useState({});
@@ -13,6 +14,9 @@ function DetailPage({match}) {
   console.log(match)
   return (
     <div>
+    <div className="nav-section">
+      <Navigation />
+    </div>
       <h1>Detail Page</h1>
       <div className="model-img">
         <img src={model.image_url} alt=""/>

@@ -1,15 +1,24 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import InfoPage from './InfoPage';
+import Footer from './Footer';
+import logo from '../images/steering-wheel.svg'
 
 function Navigation() {
   return (
-    <div>
-      <nav>
-        <NavLink to="/model">Models</NavLink>
-        <NavLink to="/test-drive">Test Drive</NavLink>
-      </nav>
+    <nav>
+    <div className="logo">
+      <img src={logo} alt=""/>
     </div>
+
+      <div className="nav-links">
+        <NavLink activeClassName="selected" exact to="/model">Models</NavLink>
+        <NavLink activeClassName="selected" exact to="/test-drive">Test Drive</NavLink>
+      </div>
+
+      <div className="nav-bottom">
+        <Footer />
+      </div>
+    </nav>
   );
 }
 
