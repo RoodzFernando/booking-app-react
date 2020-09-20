@@ -6,7 +6,7 @@ import SocialLinks from './SocialLinks';
 
 function Models() {
   const [cars, setCars] = useState([]);
-  const [ breakPoints ] = useState([
+  const [breakPoints] = useState([
     { width: 1, itemsToShow: 1 },
     { width: 850, itemsToShow: 3 },
   ]);
@@ -34,10 +34,14 @@ function Models() {
                     <div className="model-detail">
                       <img src={car.image_url} alt="" />
                       <div className="model-info">
-                        <h2>{car.make} {car.model}</h2>
+                        <h2>
+                          {car.make}
+                          {' '}
+                          {car.model}
+                        </h2>
                         <p>{car.description}</p>
                       </div>
-                      <hr/>
+                      <hr />
                       <div className="model-footer">
                         <SocialLinks />
                       </div>

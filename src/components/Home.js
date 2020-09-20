@@ -6,6 +6,7 @@ import InfoPage from './InfoPage';
 import Models from './Models';
 import TestDrive from './TestDrive';
 import DetailPage from './DetailPage';
+import BookTest from './BookTest';
 
 function Home() {
   return (
@@ -18,6 +19,7 @@ function Home() {
         <Route path="/model" strict component={Models} />
         <Route path="/test-drive" strict component={TestDrive} />
         <Route path="/detail/:id" strict component={DetailPage} />
+        <Route path="/book" strict component={BookTest} />
       </Switch>
     </div>
   );
