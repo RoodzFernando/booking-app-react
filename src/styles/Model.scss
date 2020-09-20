@@ -1,32 +1,71 @@
 .model-page {
-  border: 1px solid #000;
-  // background: grey;
   display: flex;
   .navigation-side {
-    // background: blue;
-    border: 1px solid blue;
-    // width: 100%;
+    height: 100vh;
   }
   .right-side {
-    // background: grey;
-    border: 1px solid red;
     width: 100%;
     h1, h3 {
       text-align: center;
     }
+    h1 {
+      text-transform: uppercase;
+      font-size: 25px;
+    }
+    h3 {
+      color: grey;
+    }
     .img-card {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      grid-gap: 10px;
-      border: 1px solid #000;
-      width: 100%;
+      .rec-carousel {
+        button {
+          background: grey;
+          &:hover {
+            background: #97BF0F;
+          }
+        }
+      }
+      .rec-arrow-left {
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+      }
+      .rec-arrow-right {
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+      }
+      .model-detail {
+        margin: 5px;
+        .model-info {
+          text-align: center;
+          p {
+            color: grey;
+            width: 90%;
+            height: 55px;
+            overflow: hidden;
+          }
+        }
+        hr {
+          border: 1px dashed grey;
+          margin: 0 40px 0 40px;
+        }
+        .model-footer {
+          text-align: center;
+          padding-top: 5px;
+          a {
+            img {
+              width: 20px;
+              margin: 10px;
+            }
+          }
+        }
+      }
+      .rec-pagination {
+        display: none;
+      }
     }
     a {
       text-decoration: none;
       color: #000;
-      text-transform: uppercase;
       img {
-        border: 1px solid yellow;
         width: 100%;
       }
     }
