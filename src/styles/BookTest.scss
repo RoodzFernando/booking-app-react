@@ -1,0 +1,48 @@
+.book-page {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  .test-info {
+    h2 {
+      text-transform: uppercase;
+      color: #fff;
+    }
+  }
+  form {
+    text-align: center;
+    width: 50%;
+    input, select {
+      width: 25%;
+      padding: 5px;
+      background: transparent;
+      border: 1px solid #000;
+      border: 1px solid #fff;
+      border-radius: 10px;
+      color: #fff;
+      font-size: 20px;
+    }
+    input {
+      height: 25px;
+      width: 35%;
+      margin-left: 3%;
+      margin-right: 3%;
+    }
+    button {
+      padding: 9px;
+      width: 100px;
+      background: #fff;
+      border: 1px solid #fff;
+      border-radius: 10px;
+      color: #96bf01;
+      cursor: pointer;
+      &:hover {
+        background: rgba(255, 255, 255, 0.555);
+        border: 1px solid #96bf01;
+      }
+    }
+  }
+
+}

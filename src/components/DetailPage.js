@@ -11,6 +11,7 @@ function DetailPage({ match }) {
         setModel(data.data);
       });
   }, []);
+  // console.log(match)
   return (
     <div className="main-page">
       <div className="nav-section">
@@ -58,7 +59,7 @@ function DetailPage({ match }) {
             </table>
           </div>
 
-          <Link to="/book">Book a test</Link>
+          <Link to={`/book/${match.params.id}`}>Book a test</Link>
         </div>
       </div>
     </div>

@@ -19,7 +19,7 @@ function Home() {
         <Route path="/model" strict component={Models} />
         <Route path="/test-drive" strict component={TestDrive} />
         <Route path="/detail/:id" strict component={DetailPage} />
-        <Route path="/book" strict component={BookTest} />
+        <Route path="/book/:id" strict component={BookTest} />
       </Switch>
     </div>
   );

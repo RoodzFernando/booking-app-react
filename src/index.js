@@ -11,6 +11,7 @@ import './styles/SocialLinks.scss';
 import './styles/Home.scss';
 import './styles/Model.scss';
 import './styles/DetailPage.scss';
+import './styles/BookTest.scss';
 import store from './helpers/store';
 
 ReactDOM.render(
