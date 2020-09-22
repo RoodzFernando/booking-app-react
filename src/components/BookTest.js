@@ -1,11 +1,10 @@
+import Axios from 'axios';
+import JwtDecode from 'jwt-decode';
 import React, { useState, useEffect } from 'react';
 import currentTime from '../helpers/currentTime';
-import store from '../helpers/store';
+import { northAmerica, southAmerica, europe } from '../helpers/cities';
 
-function BookTest({ match }) {
-  const north_america = ['Calgary', 'Chicago', 'Dallas', 'Guadalajara', 'Houston', 'Mexico', 'Ottawa', 'Tijuana', 'Toronto'];
-  const south_america = ['Belo Horizonte', 'Calama', 'Cordova', 'El Savador', 'Mendoza', 'Recife', 'Rio de Janeiro', 'Rosario', 'Santiago'];
-  const europe = ['Lyon', 'Marseille', 'Nice', 'Norwich', 'Norwich', 'Winchester'];
+function BookTest({ match, history }) {
   const [model, setModel] = useState({});
   const [inputValues, setInputValues] = useState({
     city: '',
@@ -22,7 +21,23 @@ function BookTest({ match }) {
 
   const handleSubmit = event => {
     event.preventDefault();
-    console.log('i am working');
+    const { city, bookDate } = inputValues;
+    const token = localStorage.getItem('token');
+    const decodeToken = JwtDecode(token);
+    const { userId } = decodeToken;
+    const headers = {
+      Authorization: `Bearer ${token}`,
+    };
+
+    const data = {
+      city,
+      date: bookDate,
+      car_id: model.id,
+      user_id: userId,
+    };
+    Axios.post('http://localhost:3001/appointments', data, {
+      headers,
+    }).then(history.push('/test-drive'));
   };
 
   const handleChange = event => {
@@ -38,13 +53,12 @@ function BookTest({ match }) {
     backgroundSize: 'cover',
     backgroundPosition: 'center',
   };
-  console.log(currentTime());
   return (
     <div className="book-page" style={imgStyle}>
       <div className="test-info">
         <h2>
           Book a
-          {`${model.make} ${model.model}`}
+          {` ${model.make} ${model.model}`}
           {' '}
           test-drive
         </h2>
@@ -53,26 +67,26 @@ function BookTest({ match }) {
 
         <select onChange={handleChange} name="city" required>
           <option>City</option>
-          <optgroup label="North America">
+          <optgroup label="NORTH AMERICA">
             {
-            north_america.map(country => (
-              <option value={country}>{country}</option>
+            northAmerica.map(country => (
+              <option key={country} value={country}>{country}</option>
             ))
           }
           </optgroup>
 
-          <optgroup label="South America">
+          <optgroup label="SOUTH AMERICA">
             {
-            south_america.map(country => (
-              <option value={country}>{country}</option>
+            southAmerica.map(country => (
+              <option key={country} value={country}>{country}</option>
             ))
           }
           </optgroup>
 
-          <optgroup label="Europe">
+          <optgroup label="EUROPE">
             {
             europe.map(country => (
-              <option value={country}>{country}</option>
+              <option key={country} value={country}>{country}</option>
             ))
           }
           </optgroup>
@@ -83,7 +97,6 @@ function BookTest({ match }) {
           name="bookDate"
           id="book-date"
           min={currentTime()}
-        // // value = {currentTime(0)}
           max={currentTime(3)}
         />
         <button type="submit" onClick={handleSubmit}>Book Now</button>

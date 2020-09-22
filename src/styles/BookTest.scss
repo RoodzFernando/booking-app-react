@@ -24,6 +24,12 @@
       color: #fff;
       font-size: 20px;
     }
+    select {
+      background: #96bf0196;
+      &:label {
+        color: red;
+      }
+    }
     input {
       height: 25px;
       width: 35%;
@@ -32,15 +38,16 @@
     }
     button {
       padding: 9px;
-      width: 100px;
       background: #fff;
       border: 1px solid #fff;
       border-radius: 10px;
       color: #96bf01;
+      font-weight: bold;
+      font-size: 17px;
       cursor: pointer;
       &:hover {
         background: rgba(255, 255, 255, 0.555);
-        border: 1px solid #96bf01;
+        border: 1px solid #000;
       }
     }
   }
