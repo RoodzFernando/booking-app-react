@@ -24,7 +24,7 @@ function BookTest({ match, history }) {
     const { city, bookDate } = inputValues;
     const token = localStorage.getItem('token');
     const decodeToken = JwtDecode(token);
-    const { userId } = decodeToken;
+    const { user_id: userId } = decodeToken;
     const headers = {
       Authorization: `Bearer ${token}`,
     };
@@ -35,9 +35,11 @@ function BookTest({ match, history }) {
       car_id: model.id,
       user_id: userId,
     };
+    // console.log(decodeToken)
+    // console.log(userId)
     Axios.post('http://localhost:3001/appointments', data, {
       headers,
-    }).then(history.push('/test-drive'));
+    }).then(history.push(`/test-drive/${userId}`));
   };
 
   const handleChange = event => {

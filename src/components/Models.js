@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import Carousel from 'react-elastic-carousel';
 import Navigation from './Navigation';
 import SocialLinks from './SocialLinks';
+import JwtDecode from 'jwt-decode';
 
 function Models() {
   const [cars, setCars] = useState([]);
@@ -10,17 +11,22 @@ function Models() {
     { width: 1, itemsToShow: 1 },
     { width: 850, itemsToShow: 3 },
   ]);
+  const [userId, setUserId] = useState('');
   useEffect(() => {
+    const token = localStorage.getItem('token');
+
     fetch('http://localhost:3001/cars')
       .then(response => response.json())
       .then(data => {
         setCars(...cars, data.data);
+        setUserId(JwtDecode(token).user_id)
       });
   }, []);
+  // console.log(userId);
   return (
     <div className="model-page">
       <div className="navigation-side">
-        <Navigation />
+        <Navigation user={userId} />
       </div>
 
       <div className="right-side">
