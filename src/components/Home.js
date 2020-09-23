@@ -14,7 +14,7 @@ function Home() {
         <Route path="/" exact component={Register} />
         <Route path="/login" exact strict component={Login} />
         <Route path="/model" strict component={Models} />
-        <Route path="/test-drive/:id" strict component={TestDrive} />
+        <Route path="/test-drive/:id" component={TestDrive} />
         <Route path="/detail/:id" strict component={DetailPage} />
         <Route path="/book/:id" strict component={BookTest} />
       </Switch>

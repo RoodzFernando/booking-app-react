@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Carousel from 'react-elastic-carousel';
+import JwtDecode from 'jwt-decode';
 import Navigation from './Navigation';
 import SocialLinks from './SocialLinks';
-import JwtDecode from 'jwt-decode';
 
 function Models() {
   const [cars, setCars] = useState([]);
@@ -15,11 +15,11 @@ function Models() {
   useEffect(() => {
     const token = localStorage.getItem('token');
 
-    fetch('http://localhost:3001/cars')
+    fetch('https://pure-badlands-43483.herokuapp.com/cars')
       .then(response => response.json())
       .then(data => {
         setCars(...cars, data.data);
-        setUserId(JwtDecode(token).user_id)
+        setUserId(JwtDecode(token).user_id);
       });
   }, []);
   // console.log(userId);

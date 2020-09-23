@@ -12,7 +12,7 @@ function BookTest({ match, history }) {
   });
 
   useEffect(() => {
-    fetch(`http://localhost:3001/cars/${match.params.id}`)
+    fetch(`https://pure-badlands-43483.herokuapp.com/cars/${match.params.id}`)
       .then(response => response.json())
       .then(data => {
         setModel(data.data);
@@ -35,7 +35,7 @@ function BookTest({ match, history }) {
       car_id: model.id,
       user_id: userId,
     };
-    Axios.post('http://localhost:3001/appointments', data, {
+    Axios.post('https://pure-badlands-43483.herokuapp.com/appointments', data, {
       headers,
     }).then(history.push(`/test-drive/${userId}`));
   };

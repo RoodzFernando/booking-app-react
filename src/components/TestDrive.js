@@ -1,21 +1,24 @@
 import React, { useEffect, useState } from 'react';
+import JwtDecode from 'jwt-decode';
 import dateInLetters from '../helpers/timeInLetters';
 import Navigation from './Navigation';
 
 function TestDrive({ match, user }) {
   const [appointments, setAppointments] = useState([]);
+  const [userId, setUserId] = useState('');
   useEffect(() => {
-    fetch(`http://localhost:3001/appointments/${match.params.id}`)
+    const token = localStorage.getItem('token');
+    fetch(`https://pure-badlands-43483.herokuapp.com/appointments/${match.params.id}`)
       .then(response => response.json())
       .then(data => {
         setAppointments(data.data);
+        setUserId(JwtDecode(token).user_id);
       });
   }, [appointments]);
-  // console.log(user)
   return (
     <div className="test-body">
       <div className="nav-side">
-        <Navigation />
+        <Navigation user={userId} />
       </div>
       <div className="appointment-table">
         <table>

@@ -26,7 +26,7 @@ const loginError = message => ({
 function loginUser(creds) {
   const config = {
     method: 'post',
-    url: 'http://localhost:3001/login',
+    url: 'https://pure-badlands-43483.herokuapp.com/login',
     data: {
       username: creds.username,
       password: creds.password,

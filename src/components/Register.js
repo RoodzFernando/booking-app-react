@@ -3,36 +3,38 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import RegisterForm from './RegisterForm';
 import Models from './Models';
+import { loginUser } from '../actions/actionsCreator';
 
-function Register({history}) {
-    const [inputValues, setInputValues] = useState({
-      username: '',
-      password: '',
-      passwordConfirmation: '',
-    })
+function Register({ history }) {
+  const [inputValues, setInputValues] = useState({
+    username: '',
+    password: '',
+    passwordConfirmation: '',
+  });
 
-    const {username, password, passwordConfirmation} = inputValues;
+  const { username, password, passwordConfirmation } = inputValues;
   const registerHandle = event => {
     event.preventDefault();
 
-    axios.post('http://localhost:3001/users', {
+    axios.post('https://pure-badlands-43483.herokuapp.com/users', {
       user: {
-        username: username,
-        password: password,
+        username,
+        password,
         password_confirmation: passwordConfirmation,
       },
     })
       .then(response => {
         localStorage.setItem('token', response.data.jwt);
-        // console.log(response)
+        console.log(response);
         if (response.data.jwt !== undefined) {
+          loginUser(inputValues);
           history.push('/model');
         } else {
           console.log('something went wrong!');
         }
       })
       .catch(error => console.log(error));
-  }
+  };
 
   const handleChange = event => {
     const { name, value } = event.target;
@@ -40,16 +42,15 @@ function Register({history}) {
       ...inputValues,
       [name]: value,
     });
-  }
-  // console.log(passwordConfirmation)
+  };
   const token = localStorage.getItem('token');
 
-    if (token === null) {
-      return <RegisterForm handleChange={handleChange} registerHandle={registerHandle} />
-    }
-    return (
-      <Models />
-    );
+  if (token === null) {
+    return <RegisterForm handleChange={handleChange} registerHandle={registerHandle} />;
+  }
+  return (
+    <Models />
+  );
 }
 
 export default Register;
