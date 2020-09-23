@@ -1,11 +1,51 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import JwtDecode from 'jwt-decode';
+import dateInLetters from '../helpers/timeInLetters';
 import Navigation from './Navigation';
 
-function TestDrive() {
+function TestDrive({ match, user }) {
+  const [appointments, setAppointments] = useState([]);
+  const [userId, setUserId] = useState('');
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    fetch(`https://pure-badlands-43483.herokuapp.com/appointments/${match.params.id}`)
+      .then(response => response.json())
+      .then(data => {
+        setAppointments(data.data);
+        setUserId(JwtDecode(token).user_id);
+      });
+  }, [appointments]);
   return (
-    <div>
-      <Navigation />
-      <h1>Test drive</h1>
+    <div className="test-body">
+      <div className="nav-side">
+        <Navigation user={userId} />
+      </div>
+      <div className="appointment-table">
+        <table>
+          <thead>
+            <tr>
+              <th>No</th>
+              <th>Make</th>
+              <th>Model</th>
+              <th>City</th>
+              <th>Date</th>
+            </tr>
+          </thead>
+          <tbody>
+            {
+                  appointments.map((appointment, id) => (
+                    <tr key={id + appointment.make}>
+                      <td>{id + 1}</td>
+                      <td>{appointment.make}</td>
+                      <td>{appointment.model}</td>
+                      <td>{appointment.city}</td>
+                      <td>{dateInLetters(appointment.date)}</td>
+                    </tr>
+                  ))
+                }
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 }

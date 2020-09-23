@@ -1,21 +1,30 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import logo from '../images/steering-wheel.svg';
 import Footer from './Footer';
-import logo from '../images/steering-wheel.svg'
+import Logout from './Logout';
+import SocialLinks from './SocialLinks';
 
-function Navigation() {
+function Navigation({ user }) {
   return (
     <nav>
-    <div className="logo">
-      <img src={logo} alt=""/>
-    </div>
+      <div className="nav-top">
+        <div className="logo">
+          <img src={logo} alt="" />
+        </div>
 
-      <div className="nav-links">
-        <NavLink activeClassName="selected" exact to="/model">Models</NavLink>
-        <NavLink activeClassName="selected" exact to="/test-drive">Test Drive</NavLink>
+        <div className="logout-btn">
+          <Logout />
+        </div>
+
+        <div className="nav-links">
+          <NavLink activeClassName="selected" exact to="/model">Models</NavLink>
+          <NavLink activeClassName="selected" exact to={`/test-drive/${user}`}>Test Drive</NavLink>
+        </div>
       </div>
 
       <div className="nav-bottom">
+        <SocialLinks />
         <Footer />
       </div>
     </nav>
