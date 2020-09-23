@@ -35,8 +35,6 @@ function BookTest({ match, history }) {
       car_id: model.id,
       user_id: userId,
     };
-    // console.log(decodeToken)
-    // console.log(userId)
     Axios.post('http://localhost:3001/appointments', data, {
       headers,
     }).then(history.push(`/test-drive/${userId}`));

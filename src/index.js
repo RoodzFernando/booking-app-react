@@ -12,6 +12,7 @@ import './styles/Home.scss';
 import './styles/Model.scss';
 import './styles/DetailPage.scss';
 import './styles/BookTest.scss';
+import './styles/TestDrive.scss';
 import store from './helpers/store';
 
 ReactDOM.render(

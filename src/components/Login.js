@@ -1,6 +1,5 @@
 import React, { PureComponent } from 'react';
-// import axios from 'axios';
-import store from '../helpers/store';
+import { Link } from 'react-router-dom';
 import { loginUser } from '../actions/actionsCreator';
 
 class Login extends PureComponent {
@@ -25,7 +24,8 @@ class Login extends PureComponent {
   handleSubmit(event) {
     event.preventDefault();
     loginUser(this.state);
-    const user_token = undefined || localStorage.getItem('token');
+    // const user_token = undefined || localStorage.getItem('token');
+    const user_token = localStorage.getItem('token');
     if (user_token) {
       this.props.history.push('/model');
     }
@@ -50,6 +50,10 @@ class Login extends PureComponent {
           <div className="btn-login">
             <button onClick={this.handleSubmit} type="submit">log in</button>
           </div>
+          <p>
+              New user?
+              <Link to="/">Register</Link>
+            </p>
         </form>
       </div>
     );

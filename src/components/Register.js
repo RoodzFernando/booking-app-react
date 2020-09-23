@@ -1,85 +1,55 @@
-import React from 'react';
+/* eslint-disable jsx-a11y/label-has-associated-control */
+import React, { useState } from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
+import RegisterForm from './RegisterForm';
+import Models from './Models';
 
-class Register extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
+function Register({history}) {
+    const [inputValues, setInputValues] = useState({
       username: '',
       password: '',
       passwordConfirmation: '',
-    };
-    this.handleChange = this.handleChange.bind(this);
-    this.registerHandle = this.registerHandle.bind(this);
-  }
+    })
 
-  registerHandle(event) {
+    const {username, password, passwordConfirmation} = inputValues;
+  const registerHandle = event => {
     event.preventDefault();
 
     axios.post('http://localhost:3001/users', {
       user: {
-        username: this.state.username,
-        password: this.state.password,
-        password_confirmation: this.state.passwordConfirmation,
+        username: username,
+        password: password,
+        password_confirmation: passwordConfirmation,
       },
     })
       .then(response => {
         localStorage.setItem('token', response.data.jwt);
+        // console.log(response)
         if (response.data.jwt !== undefined) {
-          this.props.history.push('/info');
+          history.push('/model');
         } else {
           console.log('something went wrong!');
         }
       })
       .catch(error => console.log(error));
-
-    this.setState({
-      username: '',
-      password: '',
-      passwordConfirmation: '',
-    });
   }
 
-  handleChange(event) {
+  const handleChange = event => {
     const { name, value } = event.target;
-    this.setState({
+    setInputValues({
+      ...inputValues,
       [name]: value,
     });
   }
+  // console.log(passwordConfirmation)
+  const token = localStorage.getItem('token');
 
-  render() {
+    if (token === null) {
+      return <RegisterForm handleChange={handleChange} registerHandle={registerHandle} />
+    }
     return (
-      <div className="register-page">
-        <form>
-          <h1>Register</h1>
-
-          <div className="field">
-            <label htmlFor="username">Username:</label>
-            <input type="text" placeholder="username" name="username" id="username" onChange={this.handleChange} />
-          </div>
-
-          <div div className="field">
-            <label htmlFor="password">Password:</label>
-            <input type="password" placeholder="Password" name="password" id="password" onChange={this.handleChange} />
-          </div>
-
-          <div div className="field">
-            <label label htmlFor="password_confirmation">Password confirmation:</label>
-            <input onChange={this.handleChange} type="password" placeholder="Password confirmation" name="passwordConfirmation" id="password_confirmation" />
-          </div>
-
-          <div className="btn-submit">
-            <button type="submit" onClick={this.registerHandle}>Register</button>
-            <p>
-              Already a user?
-              <Link to="login">Login</Link>
-            </p>
-          </div>
-        </form>
-      </div>
+      <Models />
     );
-  }
 }
 
 export default Register;

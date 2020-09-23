@@ -14,6 +14,23 @@ nav {
     }
   }
 
+  .logout-btn {
+    text-align: center;
+    button {
+      text-transform: uppercase;
+      background: transparent;
+      cursor: pointer;
+      padding: 5px;
+      border-radius: 6px;
+      border: 1px solid #000;
+      &:hover {
+        background: red;
+        color: #fff;
+        border: 1px solid red;
+      }
+    }
+  }
+
   .nav-links {
     display: flex;
     flex-direction: column;

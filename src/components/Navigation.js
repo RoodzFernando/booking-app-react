@@ -2,6 +2,7 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import logo from '../images/steering-wheel.svg';
 import Footer from './Footer';
+import Logout from './Logout';
 import SocialLinks from './SocialLinks';
 
 function Navigation({ user }) {
@@ -10,6 +11,10 @@ function Navigation({ user }) {
       <div className="nav-top">
         <div className="logo">
           <img src={logo} alt="" />
+        </div>
+
+        <div className="logout-btn">
+          <Logout />
         </div>
 
         <div className="nav-links">
