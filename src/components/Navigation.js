@@ -1,5 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import logo from '../images/steering-wheel.svg';
 import Footer from './Footer';
 import Logout from './Logout';
@@ -30,5 +31,9 @@ function Navigation({ user }) {
     </nav>
   );
 }
+
+Navigation.propTypes = {
+  user: PropTypes.string.isRequired,
+};
 
 export default Navigation;

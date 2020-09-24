@@ -1,5 +1,8 @@
+/* eslint-disable react/prop-types */
+/* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { PureComponent } from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import { loginUser } from '../actions/actionsCreator';
 
 class Login extends PureComponent {
@@ -22,12 +25,12 @@ class Login extends PureComponent {
   }
 
   handleSubmit(event) {
+    const { history } = this.props;
     event.preventDefault();
     loginUser(this.state);
-    const user_token = undefined || localStorage.getItem('token');
-    // const user_token = localStorage.getItem('token');
-    if (user_token) {
-      this.props.history.push('/model');
+    const userToken = undefined || localStorage.getItem('token');
+    if (userToken) {
+      history.push('/model');
     }
   }
 
@@ -59,5 +62,11 @@ class Login extends PureComponent {
     );
   }
 }
+
+Login.propTypes = {
+  history: PropTypes.shape({
+    length: PropTypes.number.isRequired,
+  }).isRequired,
+};
 
 export default Login;

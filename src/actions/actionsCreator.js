@@ -35,33 +35,11 @@ function loginUser(creds) {
   store.dispatch(requestLogin(creds));
   axios(config)
     .then(response => {
-      if (!response.statusText) {
-        console.log('no');
-      } else {
-        console.log('yes');
+      if (response.statusText) {
         store.dispatch(successLogin(creds));
-        console.log(store.getState());
-        // console.log(response.data.token)
         localStorage.setItem('token', response.data.token);
-      // props.history.push('/info')
       }
     });
-
-  // if (!response.status === 200) {
-  //   console.log(response.status)
-  //   console.log('it is ok')
-  // }else {
-  //   console.log('request is wrong')
-  // }
-  // })
-  // }
-
-  // store.dispatch(requestLogin(creds))
-  // const data = response;
-  // console.log(data);
-  // return async dispatch => {
-  //   dispatch(requestLogin(creds))
-  // }
 }
 
 export {

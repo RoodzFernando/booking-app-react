@@ -1,11 +1,14 @@
 import Axios from 'axios';
 import JwtDecode from 'jwt-decode';
 import React, { useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import currentTime from '../helpers/currentTime';
 import { northAmerica, southAmerica, europe } from '../helpers/cities';
 
-function BookTest({ match, history }) {
+function BookTest({ match }) {
   const [model, setModel] = useState({});
+  const history = useHistory();
   const [inputValues, setInputValues] = useState({
     city: '',
     bookDate: '',
@@ -105,5 +108,16 @@ function BookTest({ match, history }) {
     </div>
   );
 }
+
+BookTest.propTypes = {
+  match: PropTypes.shape({
+    path: PropTypes.string.isRequired,
+    url: PropTypes.string.isRequired,
+    isExact: PropTypes.bool.isRequired,
+    params: PropTypes.shape({
+      id: PropTypes.string.isRequired,
+    }).isRequired,
+  }).isRequired,
+};
 
 export default BookTest;

@@ -1,3 +1,4 @@
+/* eslint-disable radix */
 function dateInLetters(currDate) {
   const firstPart = currDate.split('-').join();
   const secondPart = firstPart.split('T').join(',').split(',');

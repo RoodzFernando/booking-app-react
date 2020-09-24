@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import Navigation from './Navigation';
 
 function DetailPage({ match }) {
@@ -11,7 +12,6 @@ function DetailPage({ match }) {
         setModel(data.data);
       });
   }, []);
-  // console.log(match)
   return (
     <div className="main-page">
       <div className="nav-section">
@@ -66,5 +66,16 @@ function DetailPage({ match }) {
 
   );
 }
+
+DetailPage.propTypes = {
+  match: PropTypes.shape({
+    path: PropTypes.string.isRequired,
+    url: PropTypes.string.isRequired,
+    isExact: PropTypes.bool.isRequired,
+    params: PropTypes.shape({
+      id: PropTypes.string.isRequired,
+    }).isRequired,
+  }).isRequired,
+};
 
 export default DetailPage;

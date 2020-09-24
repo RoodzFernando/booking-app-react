@@ -1,11 +1,13 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useState } from 'react';
 import axios from 'axios';
+import { useHistory } from 'react-router-dom';
 import RegisterForm from './RegisterForm';
 import Models from './Models';
 import { loginUser } from '../actions/actionsCreator';
 
-function Register({ history }) {
+function Register() {
+  const history = useHistory();
   const [inputValues, setInputValues] = useState({
     username: '',
     password: '',
@@ -25,15 +27,11 @@ function Register({ history }) {
     })
       .then(response => {
         localStorage.setItem('token', response.data.jwt);
-        console.log(response);
         if (response.data.jwt !== undefined) {
           loginUser(inputValues);
           history.push('/model');
-        } else {
-          console.log('something went wrong!');
         }
-      })
-      .catch(error => console.log(error));
+      });
   };
 
   const handleChange = event => {

@@ -1,5 +1,7 @@
+/* eslint-disable jsx-a11y/label-has-associated-control */
 import React from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 function RegisterForm({ handleChange, registerHandle }) {
   return (
@@ -33,5 +35,10 @@ function RegisterForm({ handleChange, registerHandle }) {
     </div>
   );
 }
+
+RegisterForm.propTypes = {
+  handleChange: PropTypes.func.isRequired,
+  registerHandle: PropTypes.func.isRequired,
+};
 
 export default RegisterForm;

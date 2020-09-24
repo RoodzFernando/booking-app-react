@@ -1,9 +1,11 @@
+/* eslint-disable react/no-array-index-key */
 import React, { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
 import JwtDecode from 'jwt-decode';
 import dateInLetters from '../helpers/timeInLetters';
 import Navigation from './Navigation';
 
-function TestDrive({ match, user }) {
+function TestDrive({ match }) {
   const [appointments, setAppointments] = useState([]);
   const [userId, setUserId] = useState('');
   useEffect(() => {
@@ -49,5 +51,16 @@ function TestDrive({ match, user }) {
     </div>
   );
 }
+
+TestDrive.propTypes = {
+  match: PropTypes.shape({
+    path: PropTypes.string.isRequired,
+    url: PropTypes.string.isRequired,
+    isExact: PropTypes.bool.isRequired,
+    params: PropTypes.shape({
+      id: PropTypes.string.isRequired,
+    }).isRequired,
+  }).isRequired,
+};
 
 export default TestDrive;

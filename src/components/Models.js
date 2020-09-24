@@ -22,7 +22,6 @@ function Models() {
         setUserId(JwtDecode(token).user_id);
       });
   }, []);
-  // console.log(userId);
   return (
     <div className="model-page">
       <div className="navigation-side">
@@ -36,7 +35,7 @@ function Models() {
           <Carousel breakPoints={breakPoints}>
             {
                 cars.map(car => (
-                  <Link to={`/detail/${car.slug}`}>
+                  <Link key={car.slug} to={`/detail/${car.slug}`}>
                     <div className="model-detail">
                       <img src={car.image_url} alt="" />
                       <div className="model-info">
