@@ -5,10 +5,12 @@ nav {
   flex-direction: column;
   justify-content: space-between;
   width: 200px;
+
   .logo {
     padding-top: 15px;
     padding-bottom: 15px;
     text-align: center;
+
     img {
       height: 50px;
     }
@@ -16,6 +18,7 @@ nav {
 
   .logout-btn {
     text-align: center;
+
     button {
       text-transform: uppercase;
       background: transparent;
@@ -23,6 +26,7 @@ nav {
       padding: 5px;
       border-radius: 6px;
       border: 1px solid #000;
+
       &:hover {
         background: red;
         color: #fff;
@@ -36,26 +40,30 @@ nav {
     flex-direction: column;
     text-align: center;
     text-transform: uppercase;
+
     a {
       text-decoration: none;
       margin-top: 15px;
       margin-left: 10px;
       color: #000;
     }
+
     .selected {
       font-weight: bold;
       text-transform: uppercase;
       padding: 5px;
-      background: #97BF0F;
+      background: #97bf0f;
       color: #fff;
     }
   }
 
   .nav-bottom {
     text-align: center;
+
     a {
       margin: 5px;
     }
+
     span {
       text-transform: uppercase;
       font-size: 12px;

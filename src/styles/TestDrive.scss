@@ -1,27 +1,33 @@
 .test-body {
   display: flex;
   background: #96bf0196;
+
   .nav-side {
     background: #fff;
   }
+
   .appointment-table {
     width: 100vw;
     display: flex;
     justify-content: center;
     padding-top: 5%;
+
     table {
       thead {
         tr {
           background: transparent !important;
         }
       }
+
       border-collapse: collapse;
+
       td {
         padding: 10px;
         font-size: 20px;
         text-align: center;
         color: #fff;
       }
+
       tr:nth-child(odd) {
         background: grey;
       }
