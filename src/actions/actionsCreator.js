@@ -26,7 +26,8 @@ const loginError = message => ({
 function loginUser(creds) {
   const config = {
     method: 'post',
-    url: 'https://pure-badlands-43483.herokuapp.com/login',
+    // url: 'https://pure-badlands-43483.herokuapp.com/login',
+    url: 'http://localhost:3001/login',
     data: {
       username: creds.username,
       password: creds.password,
@@ -35,9 +36,18 @@ function loginUser(creds) {
   store.dispatch(requestLogin(creds));
   axios(config)
     .then(response => {
-      if (response.statusText) {
-        store.dispatch(successLogin(creds));
-        localStorage.setItem('token', response.data.token);
+      // console.log(response.status)
+      if (response.status === 200) {
+        console.log('bon bagay');
+        //   store.dispatch(successLogin(creds));
+        //   localStorage.setItem('token', response.data.token);
+      }
+    }).catch(err => {
+      if (err.response) {
+        // console.log('hey')
+        // console.log(err.response.data.message)
+        store.dispatch(loginError(err.response.data.message));
+        // client received an error response (5xx, 4xx)
       }
     });
 }

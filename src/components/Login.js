@@ -3,7 +3,9 @@
 import React, { PureComponent } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import { loginUser } from '../actions/actionsCreator';
+import store from '../helpers/store';
 
 class Login extends PureComponent {
   constructor(props) {
@@ -35,11 +37,15 @@ class Login extends PureComponent {
   }
 
   render() {
+    // console.log(store.getState());
+    // console.log(this.props.message);
     return (
       <div className="login-page">
         <form>
           <h1>Login</h1>
-
+          <div className="message-error">
+            <span>{this.props.message}</span>
+          </div>
           <div className="field">
             <label htmlFor="username">Username:</label>
             <input onChange={this.handleChange} type="text" name="username" id="username" placeholder="Username" />
@@ -68,5 +74,8 @@ Login.propTypes = {
     length: PropTypes.number.isRequired,
   }).isRequired,
 };
+const mapStateToProps = state => ({
+  message: state.errorMessage,
+});
 
-export default Login;
+export default connect(mapStateToProps)(Login);

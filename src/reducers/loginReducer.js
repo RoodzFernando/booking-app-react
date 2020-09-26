@@ -3,7 +3,7 @@ import * as actions from '../actions/actions';
 const initialState = {
   isFetching: false,
   isAuthenticated: !!localStorage.getItem('auth_token'),
-  car: {},
+  errorMessage: '',
 };
 
 function authenticate(state = initialState, action) {

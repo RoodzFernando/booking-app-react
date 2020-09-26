@@ -18,7 +18,8 @@ function Register() {
   const registerHandle = event => {
     event.preventDefault();
 
-    axios.post('https://pure-badlands-43483.herokuapp.com/users', {
+    // axios.post('https://pure-badlands-43483.herokuapp.com/users', {
+    axios.post('http://localhost:3001/users', {
       user: {
         username,
         password,

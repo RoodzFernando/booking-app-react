@@ -15,7 +15,8 @@ function BookTest({ match }) {
   });
 
   useEffect(() => {
-    fetch(`https://pure-badlands-43483.herokuapp.com/cars/${match.params.id}`)
+    // fetch(`https://pure-badlands-43483.herokuapp.com/cars/${match.params.id}`)
+    fetch(`http://localhost:3001/cars/${match.params.id}`)
       .then(response => response.json())
       .then(data => {
         setModel(data.data);

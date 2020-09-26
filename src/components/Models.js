@@ -15,7 +15,8 @@ function Models() {
   useEffect(() => {
     const token = localStorage.getItem('token');
 
-    fetch('https://pure-badlands-43483.herokuapp.com/cars')
+    // fetch('https://pure-badlands-43483.herokuapp.com/cars')
+    fetch('http://localhost:3001/cars')
       .then(response => response.json())
       .then(data => {
         setCars(...cars, data.data);

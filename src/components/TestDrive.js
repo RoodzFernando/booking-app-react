@@ -10,7 +10,8 @@ function TestDrive({ match }) {
   const [userId, setUserId] = useState('');
   useEffect(() => {
     const token = localStorage.getItem('token');
-    fetch(`https://pure-badlands-43483.herokuapp.com/appointments/${match.params.id}`)
+    // fetch(`https://pure-badlands-43483.herokuapp.com/appointments/${match.params.id}`)
+    fetch(`http://localhost:3001/appointments/${match.params.id}`)
       .then(response => response.json())
       .then(data => {
         setAppointments(data.data);
