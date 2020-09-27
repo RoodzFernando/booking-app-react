@@ -58,3 +58,38 @@
     }
   }
 }
+
+@media (max-width: 1025px) {
+  .main-page {
+    display: flex;
+
+    .nav-section {
+      display: none;
+    }
+
+    .detail-right {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100vw;
+
+      .model-info {
+        margin-top: 2rem;
+
+        h2 {
+          text-align: center;
+        }
+
+        div {
+          display: flex;
+          justify-content: center;
+
+          table {
+            width: 98vw;
+            margin-left: 2px;
+          }
+        }
+      }
+    }
+  }
+}

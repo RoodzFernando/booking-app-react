@@ -34,3 +34,30 @@
     }
   }
 }
+
+@media (max-width: 1024px) {
+  .test-body {
+    height: 100vh;
+    width: 100vw;
+
+    .nav-side {
+      z-index: 200;
+
+      .nav-side__toggle {
+        display: none;
+      }
+    }
+
+    .appointment-table {
+      table {
+        margin-top: 25px;
+        background: #96bf0169;
+
+        td {
+          padding: 0 !important;
+          text-align: left;
+        }
+      }
+    }
+  }
+}

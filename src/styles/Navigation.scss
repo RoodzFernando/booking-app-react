@@ -73,3 +73,16 @@ nav {
     }
   }
 }
+
+@media (max-width: 1024px) {
+  nav {
+    background: rgba(252, 252, 252, 0.418);
+    position: fixed;
+    z-index: 100;
+
+    .logout-btn {
+      display: flex;
+      justify-content: center;
+    }
+  }
+}

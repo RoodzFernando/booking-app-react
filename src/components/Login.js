@@ -36,12 +36,13 @@ class Login extends PureComponent {
   }
 
   render() {
+    const { message } = this.props;
     return (
       <div className="login-page">
         <form>
           <h1>Login</h1>
           <div className="message-error">
-            <span>{this.props.message}</span>
+            <span>{message}</span>
           </div>
           <div className="field">
             <label htmlFor="username">Username:</label>

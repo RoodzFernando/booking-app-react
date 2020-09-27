@@ -4,14 +4,14 @@ import PropTypes from 'prop-types';
 import JwtDecode from 'jwt-decode';
 import dateInLetters from '../helpers/timeInLetters';
 import Navigation from './Navigation';
+import Toggle from './Toggle';
 
 function TestDrive({ match }) {
   const [appointments, setAppointments] = useState([]);
   const [userId, setUserId] = useState('');
   useEffect(() => {
     const token = localStorage.getItem('token');
-    // fetch(`https://pure-badlands-43483.herokuapp.com/appointments/${match.params.id}`)
-    fetch(`http://localhost:3001/appointments/${match.params.id}`)
+    fetch(`https://pure-badlands-43483.herokuapp.com/appointments/${match.params.id}`)
       .then(response => response.json())
       .then(data => {
         setAppointments(data.data);
@@ -21,7 +21,10 @@ function TestDrive({ match }) {
   return (
     <div className="test-body">
       <div className="nav-side">
-        <Navigation user={userId} />
+        <div className="nav-side__toggle">
+          <Navigation user={userId} />
+        </div>
+        <Toggle />
       </div>
       <div className="appointment-table">
         <table>

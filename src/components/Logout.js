@@ -7,8 +7,6 @@ function Logout() {
     event.preventDefault();
     localStorage.removeItem('token');
     history.push('/login');
-    // console.log(history)
-    // console.log('yes log me out!');
   };
   return (
     <form>

@@ -1,13 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import JwtDecode from 'jwt-decode';
 import PropTypes from 'prop-types';
 import Navigation from './Navigation';
+import '../styles/Navigation.scss';
 
 function DetailPage({ match }) {
   const [model, setModel] = useState({});
+  const [userId, setUserId] = useState('');
   useEffect(() => {
-    // fetch(`https://pure-badlands-43483.herokuapp.com/cars/${match.params.id}`)
-    fetch(`http://localhost:3001/cars/${match.params.id}`)
+    const token = localStorage.getItem('token');
+    setUserId(JwtDecode(token).user_id);
+    fetch(`https://pure-badlands-43483.herokuapp.com/cars/${match.params.id}`)
       .then(response => response.json())
       .then(data => {
         setModel(data.data);
@@ -16,11 +20,12 @@ function DetailPage({ match }) {
   return (
     <div className="main-page">
       <div className="nav-section">
-        <Navigation />
+        <Navigation user={userId} />
       </div>
 
       <div className="detail-right">
         <div className="model-img">
+
           <img src={model.image_url} alt="" />
         </div>
 

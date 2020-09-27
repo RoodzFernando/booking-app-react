@@ -4,28 +4,32 @@ import Carousel from 'react-elastic-carousel';
 import JwtDecode from 'jwt-decode';
 import Navigation from './Navigation';
 import SocialLinks from './SocialLinks';
+import Toggle from './Toggle';
 
 function Models() {
   const [cars, setCars] = useState([]);
   const [breakPoints] = useState([
     { width: 1, itemsToShow: 1 },
     { width: 850, itemsToShow: 3 },
-    // { width: 650, itemsToShow: 1 },
   ]);
   const [userId, setUserId] = useState('');
   useEffect(() => {
     const token = localStorage.getItem('token');
 
-    // fetch('https://pure-badlands-43483.herokuapp.com/cars')
-    fetch('http://localhost:3001/cars')
+    fetch('https://pure-badlands-43483.herokuapp.com/cars')
       .then(response => response.json())
       .then(data => {
         setCars(...cars, data.data);
         setUserId(JwtDecode(token).user_id);
       });
   }, []);
+
   return (
     <div className="model-page">
+      <div className="nav-top">
+        <Toggle />
+      </div>
+
       <div className="navigation-side">
         <Navigation user={userId} />
       </div>

@@ -7,6 +7,10 @@
 
   .right-side {
     width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 
     h1,
     h3 {
@@ -87,6 +91,23 @@
       .rec-pagination {
         display: none;
       }
+    }
+  }
+}
+
+@media (max-width: 1024px) {
+  .model-page {
+    .nav-top {
+      visibility: visible;
+    }
+
+    .navigation-side {
+      display: none;
+    }
+
+    .right-side {
+      top: 0;
+      left: 0;
     }
   }
 }

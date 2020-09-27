@@ -11,7 +11,7 @@ function RegisterForm({ handleChange, registerHandle, messageError }) {
         <ul className="message-error">
           {
             messageError.map(msg => (
-              <li>{msg}</li>
+              <li key={msg}>{msg}</li>
             ))
           }
         </ul>
@@ -45,6 +45,7 @@ function RegisterForm({ handleChange, registerHandle, messageError }) {
 RegisterForm.propTypes = {
   handleChange: PropTypes.func.isRequired,
   registerHandle: PropTypes.func.isRequired,
+  messageError: PropTypes.arrayOf(PropTypes.string).isRequired,
 };
 
 export default RegisterForm;

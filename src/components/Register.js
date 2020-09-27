@@ -20,8 +20,7 @@ function Register() {
   const registerHandle = event => {
     event.preventDefault();
 
-    // axios.post('https://pure-badlands-43483.herokuapp.com/users', {
-    axios.post('http://localhost:3001/users', {
+    axios.post('https://pure-badlands-43483.herokuapp.com/users', {
       user: {
         username,
         password,
@@ -36,9 +35,7 @@ function Register() {
         }
       }).catch(err => {
         if (err.response) {
-          // console.log(err.response.data.message)
           setMessageError([...err.response.data.message]);
-          // store.dispatch(loginError(err.response.data.message));
         }
       });
   };
@@ -52,9 +49,14 @@ function Register() {
   };
   const token = localStorage.getItem('token');
 
-  // console.log(messageError)
   if (token === null) {
-    return <RegisterForm messageError={messageError} handleChange={handleChange} registerHandle={registerHandle} />;
+    return (
+      <RegisterForm
+        messageError={messageError}
+        handleChange={handleChange}
+        registerHandle={registerHandle}
+      />
+    );
   }
   return (
     <Models />
