@@ -1,3 +1,5 @@
+@import './msg_error.scss';
+
 .register-page {
   width: 100vw;
   height: 100vh;
@@ -18,6 +20,10 @@
     h1 {
       text-align: center;
       text-transform: uppercase;
+    }
+
+    .message-error {
+      @include error-msg;
     }
 
     .field {
@@ -75,5 +81,11 @@
         }
       }
     }
+  }
+}
+
+@media (max-width: 1024px) {
+  .navigation-side {
+    display: none;
   }
 }

@@ -29,12 +29,6 @@ function authenticate(state = initialState, action) {
         isAuthenticated: false,
         errorMessage: action.payload,
       };
-    case actions.LOGOUT_SUCCESS:
-      return {
-        ...state,
-        isFetching: true,
-        isAuthenticated: false,
-      };
     default:
       return state;
   }

@@ -5,7 +5,6 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { loginUser } from '../actions/actionsCreator';
-import store from '../helpers/store';
 
 class Login extends PureComponent {
   constructor(props) {
@@ -27,8 +26,8 @@ class Login extends PureComponent {
   }
 
   handleSubmit(event) {
-    const { history } = this.props;
     event.preventDefault();
+    const { history } = this.props;
     loginUser(this.state);
     const userToken = undefined || localStorage.getItem('token');
     if (userToken) {
@@ -37,8 +36,6 @@ class Login extends PureComponent {
   }
 
   render() {
-    // console.log(store.getState());
-    // console.log(this.props.message);
     return (
       <div className="login-page">
         <form>

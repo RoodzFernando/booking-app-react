@@ -14,6 +14,8 @@ function Register() {
     passwordConfirmation: '',
   });
 
+  const [messageError, setMessageError] = useState([]);
+
   const { username, password, passwordConfirmation } = inputValues;
   const registerHandle = event => {
     event.preventDefault();
@@ -32,6 +34,12 @@ function Register() {
           loginUser(inputValues);
           history.push('/model');
         }
+      }).catch(err => {
+        if (err.response) {
+          // console.log(err.response.data.message)
+          setMessageError([...err.response.data.message]);
+          // store.dispatch(loginError(err.response.data.message));
+        }
       });
   };
 
@@ -44,8 +52,9 @@ function Register() {
   };
   const token = localStorage.getItem('token');
 
+  // console.log(messageError)
   if (token === null) {
-    return <RegisterForm handleChange={handleChange} registerHandle={registerHandle} />;
+    return <RegisterForm messageError={messageError} handleChange={handleChange} registerHandle={registerHandle} />;
   }
   return (
     <Models />

@@ -3,12 +3,18 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-function RegisterForm({ handleChange, registerHandle }) {
+function RegisterForm({ handleChange, registerHandle, messageError }) {
   return (
     <div className="register-page">
       <form>
         <h1>Register</h1>
-
+        <ul className="message-error">
+          {
+            messageError.map(msg => (
+              <li>{msg}</li>
+            ))
+          }
+        </ul>
         <div className="field">
           <label htmlFor="username">Username:</label>
           <input type="text" placeholder="username" name="username" id="username" onChange={handleChange} />

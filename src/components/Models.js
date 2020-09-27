@@ -10,6 +10,7 @@ function Models() {
   const [breakPoints] = useState([
     { width: 1, itemsToShow: 1 },
     { width: 850, itemsToShow: 3 },
+    // { width: 650, itemsToShow: 1 },
   ]);
   const [userId, setUserId] = useState('');
   useEffect(() => {
