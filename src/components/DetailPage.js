@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import JwtDecode from 'jwt-decode';
 import PropTypes from 'prop-types';
+import JwtDecode from 'jwt-decode';
 import Navigation from './Navigation';
 import '../styles/Navigation.scss';
+import { detailPageRequest } from '../services/apis';
 
 function DetailPage({ match }) {
   const [model, setModel] = useState({});
@@ -11,11 +12,7 @@ function DetailPage({ match }) {
   useEffect(() => {
     const token = localStorage.getItem('token');
     setUserId(JwtDecode(token).user_id);
-    fetch(`https://pure-badlands-43483.herokuapp.com/cars/${match.params.id}`)
-      .then(response => response.json())
-      .then(data => {
-        setModel(data.data);
-      });
+    detailPageRequest(setModel, match.params.id);
   }, []);
   return (
     <div className="main-page">

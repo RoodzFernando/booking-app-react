@@ -1,10 +1,10 @@
-import Axios from 'axios';
 import JwtDecode from 'jwt-decode';
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import currentTime from '../helpers/currentTime';
 import { northAmerica, southAmerica, europe } from '../helpers/cities';
+import { bookTestRequest, createAppointmentRequest } from '../services/apis';
 
 function BookTest({ match }) {
   const [model, setModel] = useState({});
@@ -15,11 +15,7 @@ function BookTest({ match }) {
   });
 
   useEffect(() => {
-    fetch(`https://pure-badlands-43483.herokuapp.com/cars/${match.params.id}`)
-      .then(response => response.json())
-      .then(data => {
-        setModel(data.data);
-      });
+    bookTestRequest(setModel, match.params.id);
   }, []);
 
   const handleSubmit = event => {
@@ -38,9 +34,7 @@ function BookTest({ match }) {
       car_id: model.id,
       user_id: userId,
     };
-    Axios.post('https://pure-badlands-43483.herokuapp.com/appointments', data, {
-      headers,
-    }).then(history.push(`/test-drive/${userId}`));
+    createAppointmentRequest(data, headers, userId, history);
   };
 
   const handleChange = event => {

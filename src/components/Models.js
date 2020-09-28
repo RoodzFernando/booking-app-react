@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Carousel from 'react-elastic-carousel';
-import JwtDecode from 'jwt-decode';
 import Navigation from './Navigation';
 import SocialLinks from './SocialLinks';
 import Toggle from './Toggle';
+import { modelRequest } from '../services/apis';
 
 function Models() {
   const [cars, setCars] = useState([]);
@@ -15,15 +15,8 @@ function Models() {
   const [userId, setUserId] = useState('');
   useEffect(() => {
     const token = localStorage.getItem('token');
-
-    fetch('https://pure-badlands-43483.herokuapp.com/cars')
-      .then(response => response.json())
-      .then(data => {
-        setCars(...cars, data.data);
-        setUserId(JwtDecode(token).user_id);
-      });
+    modelRequest(token, cars, setCars, setUserId);
   }, []);
-
   return (
     <div className="model-page">
       <div className="nav-top">

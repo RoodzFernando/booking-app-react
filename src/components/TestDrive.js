@@ -1,23 +1,18 @@
 /* eslint-disable react/no-array-index-key */
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import JwtDecode from 'jwt-decode';
 import dateInLetters from '../helpers/timeInLetters';
 import Navigation from './Navigation';
 import Toggle from './Toggle';
+import { testDriveRequest } from '../services/apis';
 
 function TestDrive({ match }) {
   const [appointments, setAppointments] = useState([]);
   const [userId, setUserId] = useState('');
   useEffect(() => {
     const token = localStorage.getItem('token');
-    fetch(`https://pure-badlands-43483.herokuapp.com/appointments/${match.params.id}`)
-      .then(response => response.json())
-      .then(data => {
-        setAppointments(data.data);
-        setUserId(JwtDecode(token).user_id);
-      });
-  }, [appointments]);
+    testDriveRequest(setAppointments, setUserId, token, match.params.id);
+  }, [appointments.length]);
   return (
     <div className="test-body">
       <div className="nav-side">
