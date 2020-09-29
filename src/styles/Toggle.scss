@@ -1,0 +1,20 @@
+.hamburger-menu {
+  width: 35px;
+  display: flex;
+  flex-direction: column;
+  margin-top: 15px;
+  margin-left: 15px;
+  z-index: 200;
+
+  i {
+    background: #000;
+    height: 5px;
+    margin: 2px;
+  }
+}
+
+@media (min-width: 1025px) {
+  .hamburger-menu {
+    display: none;
+  }
+}
